@@ -237,8 +237,8 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
 #Keyboard backlight
-bindsym XF86KbdBrightnessUp exec keyboardlight up 
-bindsym XF86KbdBrightnessDown exec keyboardlight down 
+bindsym XF86KbdBrightnessUp exec sudo asus-kbd-backlight up
+bindsym XF86KbdBrightnessDown exec sudo asus-kbd-backlight down
 
 #screenshot
 bindsym Print exec scrot -s -e 'mv $f ~/Pictures/screenshots/'
