@@ -241,7 +241,7 @@ bindsym XF86KbdBrightnessUp exec sudo asus-kbd-backlight up
 bindsym XF86KbdBrightnessDown exec sudo asus-kbd-backlight down
 
 #screenshot
-bindsym Print exec scrot -s -e 'mv $f ~/Pictures/screenshots/'
+bindsym Print exec maim -s ~/Pictures/screenshots/$(date +%F-%T).png
 
 bindsym $mod+m move workspace to output left
 
