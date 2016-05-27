@@ -121,8 +121,8 @@ Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'Raimondi/delimitMate'
-Plug 'lervag/vimtex'
-Plug 'fatih/vim-go'
+Plug 'lervag/vimtex', { 'for': 'tex' }
+Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'tpope/vim-fugitive'
 call plug#end()
 " }}}
