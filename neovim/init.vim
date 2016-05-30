@@ -156,6 +156,11 @@ map <C-n> :NERDTreeToggle<cr>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " }}}
 
+" vim-go {{{
+" Automatically add imports
+let g:go_fmt_command = "goimports"
+" }}}
+
 " EasyAlign {{{
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
