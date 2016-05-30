@@ -68,6 +68,10 @@ fun! <SID>StripTrailingWhitespaces()
     %s/\s\+$//e
     call cursor(l, c)
 endfun
+
+fun! DoRemote(arg)
+  UpdateRemotePlugins
+endfun
 " }}}
 
 " Mappings {{{
@@ -124,6 +128,11 @@ Plug 'Raimondi/delimitMate'
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'tpope/vim-fugitive'
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+Plug 'zchee/deoplete-go', { 'do': 'make', 'for': 'go' }
+Plug 'zchee/deoplete-clang', { 'for': [ 'c', 'cpp' ] }
+Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+Plug 'ervandew/supertab'
 call plug#end()
 " }}}
 
@@ -165,6 +174,47 @@ map <C-l> :Ag<cr>
 " Neomake {{{
 " Autostart file check after each save
 autocmd! BufWritePost * Neomake
+" }}}
+
+" Deoplete {{{
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
+
+" Latex completion (copy pasted from the doc of vimtex
+if !exists('g:neocomplete#sources#omni#input_patterns')
+let g:neocomplete#sources#omni#input_patterns = {}
+endif
+let g:neocomplete#sources#omni#input_patterns.tex =
+    \ '\v\\%('
+    \ . '\a*cite\a*%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+    \ . '|\a*ref%(\s*\{[^}]*|range\s*\{[^,}]*%(}\{)?)'
+    \ . '|hyperref\s*\[[^]]*'
+    \ . '|includegraphics\*?%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+    \ . '|%(include%(only)?|input)\s*\{[^}]*'
+    \ . '|\a*(gls|Gls|GLS)(pl)?\a*%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+    \ . '|includepdf%(\s*\[[^]]*\])?\s*\{[^}]*'
+    \ . '|includestandalone%(\s*\[[^]]*\])?\s*\{[^}]*'
+    \ . ')\m'
+" }}}
+
+" deoplete-go {{{
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+let g:deoplete#sources#go#use_cache = 1"
+" }}}
+
+" deoplete-clang {{{
+let g:deoplete#sources#clang#libclang_path = "/usr/lib/libclang.so"
+let g:deoplete#sources#clang#clang_header = "/usr/lib/clang"
+" }}}
+
+" deoplete-jedi {{{
+let g:deoplete#sources#jedi#python_path = "/usr/bin/python"
+let deoplete#sources#jedi#show_docstring = 1
+" }}}
+
+" supertab {{{
+let g:SuperTabDefaultCompletionType = "<c-n>"
 " }}}
 
 " Colorscheme {{{
