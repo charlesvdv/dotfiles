@@ -6,6 +6,8 @@ urxvt*cursorBlink: true
 !! disable the scrollbar
 urxvt*scrollBar: false
 urxvt*font: xft:Hack:size=10
+urxvt*scrollTtyOutput: false
+urxvt*scrollTtyKeypress: true
 
 !! make url clickable
 urxvt*perl-lib: /usr/bin/urxvt/perl
