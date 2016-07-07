@@ -96,6 +96,10 @@ alias v='nvim'
 alias vim='nvim'
 alias vi='nvim'
 
+# set default editor to neovim
+export VISUAL=nvim
+export EDITOR=nvim
+
 # screen config
 # dualscreen with HDMI
 alias dlscr="xrandr --output HDMI2 --primary --auto --pos 1366x0 --rotate normal --output HDMI1 --off --output DP1 --off --output eDP1 --mode 1366x768 --pos 0x0 --rotate normal --output VIRTUAL1 --off"
@@ -112,11 +116,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 alias ls="ls -F --color"
 
-# config global variables
-export VISUAL=nvim
-export EDITOR=nvim
-
 export GOPATH=~/Documents/progra/GO
 
-# fzf (fuzzy file finder
+# fzf (fuzzy file finder)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
