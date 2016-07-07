@@ -91,6 +91,16 @@ export ARCHFLAGS="-arch x86_64"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# alias for xbps (package manager of voidlinux)
+alias xbps-install='sudo xbps-install'
+alias xbps-query='sudo xbps-query'
+alias xbps-remove='sudo xbps-remove'
+
+alias xi="xbps-install"
+alias xu="xbps-install -Su"
+alias xq="xbps-query -Rs"
+alias xr="xbps-remove -R"
+
 # remap all vi* entry to nvim
 alias v='nvim'
 alias vim='nvim'
