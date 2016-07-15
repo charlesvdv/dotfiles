@@ -41,6 +41,8 @@ set foldnestmax=10         " max 10 depht
 set foldenable             " don't fold files by default on open
 set foldlevelstart=10
 
+set completeopt-=preview   " remove the preview window when we use the autocompletion
+
 set wildmenu
 set wildignorecase
 
