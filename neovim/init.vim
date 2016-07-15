@@ -46,7 +46,7 @@ set completeopt-=preview   " remove the preview window when we use the autocompl
 set wildmenu
 set wildignorecase
 
-set wildignore+=*.pyc
+set wildignore+=*.pyc,*.o
 set wildignore+=.git
 set wildignore+=*.jpg,*.gif,*.png,*.jpeg,*.svn,*.bmp
 set wildignore+=build/*,tmp/*,bin/*
