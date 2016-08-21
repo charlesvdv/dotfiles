@@ -138,6 +138,11 @@ Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'zchee/deoplete-go', { 'do': 'make', 'for': 'go' }
 Plug 'zchee/deoplete-clang', { 'for': [ 'c', 'cpp' ] }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+Plug 'carlitux/deoplete-ternjs', { 'for': 'javascript' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'hail2u/vim-css3-syntax', { 'for': [ 'css', 'html'] }
+Plug 'ap/vim-css-color'
+Plug 'emmetio/emmet', { 'for': 'html' }
 Plug 'ervandew/supertab'
 call plug#end()
 " }}}
@@ -183,6 +188,16 @@ autocmd! BufWritePost * Neomake
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
 
+let g:deoplete#sources = {}
+let g:deoplete#sources._ = ['buffer', 'file', 'member']
+let g:deoplete#sources.c = ['buffer', 'file', 'clang']
+let g:deoplete#sources.cpp = ['buffer', 'file', 'clang']
+let g:deoplete#sources.go = ['buffer', 'file', 'go']
+let g:deoplete#sources.python = ['buffer', 'file', 'jedi']
+let g:deoplete#sources.javascript = ['buffer', 'file', 'ternjs']
+let g:deoplete#sources.html = ['buffer', 'file', 'member', 'omni']
+let g:deoplete#sources.css = ['buffer', 'file', 'member', 'omni']
+
 " Latex completion (copy pasted from the doc of vimtex
 if !exists('g:neocomplete#sources#omni#input_patterns')
 let g:neocomplete#sources#omni#input_patterns = {}
@@ -214,6 +229,10 @@ let g:deoplete#sources#clang#clang_header = "/usr/lib/clang"
 " deoplete-jedi {{{
 let g:deoplete#sources#jedi#python_path = "/usr/bin/python"
 let deoplete#sources#jedi#show_docstring = 1
+" }}}
+
+" vim-javascript {{{
+let g:javascript_plugin_jsdoc = 1
 " }}}
 
 " supertab {{{
