@@ -120,6 +120,7 @@ nmap <cr> o<esc>
 filetype plugin on
 
 call plug#begin()
+Plug 'morhetz/gruvbox'
 Plug 'benekastah/neomake'
 Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
 Plug 'tpope/vim-surround'
@@ -143,6 +144,7 @@ Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'hail2u/vim-css3-syntax', { 'for': [ 'css', 'html'] }
 Plug 'ap/vim-css-color'
 Plug 'emmetio/emmet', { 'for': 'html' }
+Plug 'alvan/vim-closetag'
 Plug 'ervandew/supertab'
 call plug#end()
 " }}}
@@ -151,7 +153,7 @@ call plug#end()
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1     " let see the buffer
 let g:airline#extensions#tabline#fnamemod=':t' " show only the name
-let g:airline_theme='solarized'
+let g:airline_theme='gruvbox'
 " }}}
 
 " NerdCommenter {{{
@@ -241,10 +243,11 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " Colorscheme {{{
 set background=dark
+set termguicolors
 " Change the background color (useful when outside/inside)
 map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 
-colorscheme solarized
+colorscheme gruvbox
 " }}}
 
 " Neovim specific {{{
