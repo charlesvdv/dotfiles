@@ -53,11 +53,6 @@ set wildignore+=build/*,tmp/*,bin/*
 set wildignore+=*node_modules/*
 " }}}
 
-" netrw config {{{
-let g:netrw_banner = 0
-let g:netrw_list_hide = &wildignore
-" }}}
-
 " Automatic action {{{
 " Remove trailing whitespace on save
 autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
@@ -127,6 +122,7 @@ Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'altercation/vim-colors-solarized'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -159,6 +155,14 @@ let g:airline_theme='gruvbox'
 " NerdCommenter {{{
 let NERDSpaceDelims=1
 let NERDRemoveExtraSpaces=1
+" }}}
+
+" NerdTree {{{
+let NERDTreeShowHidden=1 " Show hidden files by default
+let NERDTreeQuitOnOpen=1 " Quit when a file is opened
+map <C-n> :NERDTreeToggle<cr>
+" Close NerdTree if it's the only windows left
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " }}}
 
 " vim-go {{{
