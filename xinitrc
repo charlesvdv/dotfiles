@@ -1,4 +1,4 @@
 #!/bin/bash
 xrdb -load ~/.Xresources
 setxkbmap fr
-exec i3
+exec dbus-launch --exit-with-session i3
