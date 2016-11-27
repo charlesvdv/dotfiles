@@ -55,21 +55,19 @@ set wildignore+=*node_modules/*
 
 " Automatic action {{{
 " Remove trailing whitespace on save
-autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
-" Remove search highlighting when we are done searching
-" TODO: highlighting still appears sometimes...
-autocmd InsertEnter * :noh | redraw
-autocmd InsertLeave * :noh | redraw
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 " }}}
 
 " Specific function {{{
 " Remove trailing whitespace and restore cursor position
-fun! <SID>StripTrailingWhitespaces()
+function! <SID>StripTrailingWhitespaces()
+    let _s=@/
     let l = line(".")
     let c = col(".")
     %s/\s\+$//e
+    let @/=_s
     call cursor(l, c)
-endfun
+endfunction
 
 fun! DoRemote(arg)
   UpdateRemotePlugins
@@ -105,9 +103,8 @@ imap jj <esc>
 " insert a new line without going in insert mode
 nmap <cr> o<esc>
 
-" This unsets the "last search pattern" register by hitting return
-" nnoremap <silent> <cr> <bar> :nohlsearch<cr>
-
+" Remove search highlighting when pressing <esc>
+nnoremap <esc> :noh<return><esc>
 " }}}
 
 " Plugins {{{
