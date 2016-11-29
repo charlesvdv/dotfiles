@@ -51,6 +51,9 @@ set wildignore+=.git
 set wildignore+=*.jpg,*.gif,*.png,*.jpeg,*.svn,*.bmp
 set wildignore+=build/*,tmp/*,bin/*
 set wildignore+=*node_modules/*
+
+" Neovim specifics
+set inccommand=nosplit
 " }}}
 
 " Automatic action {{{
