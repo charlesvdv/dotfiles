@@ -15,4 +15,11 @@
     $HOME/.xinitrc: xinitrc
     $HOME/.zshrc: terminal/zshrc
     $HOME/.config/nvim/init.vim: neovim/init.vim
+    $HOME/.config/nvim/config.vim: neovim/config.vim
+    $HOME/.config/nvim/action.vim: neovim/action.vim
+    $HOME/.config/nvim/remap.vim: neovim/remap.vim
+    $HOME/.config/nvim/plugin.vim: neovim/plugin.vim
+    $HOME/.config/nvim/plugin/deoplete.vim: neovim/plugin/deoplete.vim
+    $HOME/.config/nvim/plugin/language.vim: neovim/plugin/language.vim
+    $HOME/.config/nvim/plugin/others.vim: neovim/plugin/others.vim
     $HOME/.Xresources: Xresources
