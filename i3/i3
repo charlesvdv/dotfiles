@@ -228,9 +228,9 @@ bindsym $mod+shift+x exec i3lock --color "$base01"
 #Multimedia key
 
 #Sound control
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -5%
-bindsym XF86AudioMute exec --no--startup-id pactl set-sink-mute 1 'toggle'
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute exec --no--startup-id pactl set-sink-mute 0 'toggle'
 
 #Screen brightness control
 bindsym XF86MonBrightnessUp exec xbacklight -inc 5
