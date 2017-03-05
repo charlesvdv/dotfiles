@@ -34,6 +34,7 @@ if !exists('g:deoplete#sources')
     let g:deoplete#sources = {}
 endif
 let g:deoplete#sources.tex = ['omni', 'file', 'buffer']
+let g:deoplete#sources.php = ['omni', 'file', 'buffer']
 
 " deoplete-go
 let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'

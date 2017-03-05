@@ -57,5 +57,4 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1 " change cursor shape when in insert mode
 
 " Configure termcolor
 set background=dark
-set termguicolors
 colorscheme gruvbox
