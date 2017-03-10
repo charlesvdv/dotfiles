@@ -5,7 +5,7 @@ urxvt*saveLines: 65535
 urxvt*cursorBlink: true
 !! disable the scrollbar
 urxvt*scrollBar: false
-urxvt*font: xft:Roboto Mono Light for powerline:size=11
+urxvt*font: xft:FiraCode Retina:size=11
 urxvt*scrollTtyOutput: false
 urxvt*scrollTtyKeypress: true
 
