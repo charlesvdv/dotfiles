@@ -23,3 +23,5 @@
     $HOME/.config/nvim/plugin/language.vim: neovim/plugin/language.vim
     $HOME/.config/nvim/plugin/others.vim: neovim/plugin/others.vim
     $HOME/.Xresources: Xresources
+    $HOME/.config/zathura/zathurarc: zathurarc
+    $HOME/.config/alacritty/alacritty.yml: terminal/alacritty.yml
