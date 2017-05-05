@@ -13,7 +13,7 @@ clickable_url       = true
 scrollback_lines    = 5000
 search_wrap         = true
 
-font                = Hack 11
+font                = FiraCode Retina 11
 
 [colors]
 # gruvbox colorscheme
