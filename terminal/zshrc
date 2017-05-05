@@ -101,6 +101,11 @@ alias vi='nvim'
 export VISUAL=nvim
 export EDITOR=nvim
 
+# new command to create an urgent window on i3.
+# How tu use:
+# sleep 5; urg
+alias urg="echo -e '\a'"
+
 # screen config
 # dualscreen with HDMI
 alias dlscr="xrandr --output HDMI2 --primary --auto --pos 1366x0 --rotate normal --output HDMI1 --off --output DP1 --off --output eDP1 --mode 1366x768 --pos 0x0 --rotate normal --output VIRTUAL1 --off"

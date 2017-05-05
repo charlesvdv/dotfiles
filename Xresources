@@ -8,6 +8,7 @@ urxvt*scrollBar: false
 urxvt*font: xft:FiraCode Retina:size=11
 urxvt*scrollTtyOutput: false
 urxvt*scrollTtyKeypress: true
+urxvt*urgentOnBell: true
 
 !! make url clickable
 urxvt*perl-lib: /usr/bin/urxvt/perl
