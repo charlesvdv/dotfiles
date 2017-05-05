@@ -31,11 +31,6 @@ let g:neomake_c_clang_args = ['-fsyntax-only', '-Wall', '-Wextra',
 let g:neomake_c_enabled_makers = ['clang']
 
 " Ultisnips config
-let g:UltiSnipsExpandTrigger='<C-s>'
-let g:UltiSnipsJumpForwardTrigger='<Esc>'
-
-" Denite
-map <C-p> :Denite -auto-resize file_rec<cr>
-map <C-l> :Denite -auto-resize grep<cr>
-
-call denite#custom#source('file_rec', 'sorters', ['sorter_sublime'])
+let g:UltiSnipsExpandTrigger='<C-b>'
+let g:UltiSnipsJumpForwardTrigger='<C-b>'
+let g:UltisnipsJumpBackwardTrigger='<C-B>'
