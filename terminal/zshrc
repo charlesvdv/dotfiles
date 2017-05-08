@@ -5,19 +5,10 @@ export ZSH=/home/charles/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="lambda"
 
-#Customize the powerlevel9k theme
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vcs vi_mode)
-
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-POWERLEVEL9K_SHORTEN_DELIMITER=".."
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_middle"
-POWERLEVEL9K_STATUS_VERBOSE=false
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 # Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
@@ -36,15 +27,15 @@ POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -58,7 +49,7 @@ HIST_STAMPS="dd/mm/yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump python dircycle vi_mode)
+plugins=(git autojump python dircycle extract colorize zsh-autosuggestions zsh-autopair)
 
 # User configuration
 
@@ -87,10 +78,6 @@ export ARCHFLAGS="-arch x86_64"
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # remap all vi* entry to nvim
 alias v='nvim'
@@ -112,15 +99,10 @@ alias dlscr="xrandr --output HDMI2 --primary --auto --pos 1366x0 --rotate normal
 # monoscreen (laptop screen)
 alias lptscr="xrandr --output HDMI2 --off --output HDMI1 --off --output DP1 --off --output eDP1 --mode 1366x768 --pos 0x0 --rotate normal --output VIRTUAL1 --off"
 
-# Shortcut
-export PROG='/home/charles/Documents/progra/'
-export ECAM='/home/charles/Documents/ECAM/3BE/'
-
 # ls with color
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
-alias ls="ls -F --color"
 
 export GOPATH=~/Documents/progra/GO
 
