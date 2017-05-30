@@ -31,3 +31,10 @@ nnoremap <esc> :noh<return><esc>
 
 " Change background color to easily work on dark/light places.
 map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
+
+" move line by line visually
+nmap j gj
+nmap k gk
+
+" select the last pasted text
+nnoremap gp `[v`]

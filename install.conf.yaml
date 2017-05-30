@@ -19,9 +19,8 @@
     $HOME/.config/nvim/action.vim: neovim/action.vim
     $HOME/.config/nvim/remap.vim: neovim/remap.vim
     $HOME/.config/nvim/plugin.vim: neovim/plugin.vim
-    $HOME/.config/nvim/plugin/deoplete.vim: neovim/plugin/deoplete.vim
-    $HOME/.config/nvim/plugin/language.vim: neovim/plugin/language.vim
-    $HOME/.config/nvim/plugin/others.vim: neovim/plugin/others.vim
+    $HOME/.config/nvim/plugin: neovim/plugin
+    $HOME/.config/nvim/plugged/vim-snippets/custom_snips: neovim/custom_snips
     $HOME/.Xresources: Xresources
     $HOME/.config/zathura/zathurarc: zathurarc
     $HOME/.config/alacritty/alacritty.yml: terminal/alacritty.yml

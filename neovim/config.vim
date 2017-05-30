@@ -53,8 +53,8 @@ set wildignore+=*node_modules/*
 
 " Neovim specifics
 set inccommand=nosplit
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1 " change cursor shape when in insert mode
 
 " Configure termcolor
+set t_Co=256
 set background=dark
 colorscheme gruvbox

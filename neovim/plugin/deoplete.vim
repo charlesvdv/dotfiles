@@ -1,5 +1,6 @@
 " Enable at startup
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
 
 inoremap <silent><expr> <TAB>
 		\ pumvisible() ? "\<C-n>" :
@@ -50,5 +51,5 @@ let g:deoplete#sources#jedi#python_path = "/usr/bin/python"
 let deoplete#sources#jedi#show_docstring = 1
 
 " deoplete-rust
-let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
-let g:deoplete#sources#rust#rust_source_path='~/.config/nvim/plugged/deoplete-rust/rust/src'
+let g:deoplete#sources#rust#racer_binary='which racer'
+let g:deoplete#sources#rust#rust_source_path='~/.cargo/rust_src/src'

@@ -19,6 +19,7 @@ Plug 'ap/vim-css-color', { 'for': ['css', 'html', 'javascript'] }
 Plug 'emmetio/emmet', { 'for': 'html' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'leafgarland/typescript-vim'
+Plug 'cespare/vim-toml'
 
 " Deoplete
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }

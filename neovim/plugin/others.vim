@@ -34,3 +34,4 @@ let g:neomake_c_enabled_makers = ['clang']
 let g:UltiSnipsExpandTrigger='<C-b>'
 let g:UltiSnipsJumpForwardTrigger='<C-b>'
 let g:UltisnipsJumpBackwardTrigger='<C-B>'
+let g:UltiSnipsSnippetDirectories=['UltiSnips', 'custom_snips']

@@ -3,6 +3,3 @@ let g:go_fmt_command = "goimports"
 
 " vim-javascript
 let g:javascript_plugin_jsdoc = 1
-
-" rust.vim
-let g:rustfmt_autosave = 1
