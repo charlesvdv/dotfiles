@@ -20,6 +20,8 @@ Plug 'emmetio/emmet', { 'for': 'html' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'leafgarland/typescript-vim'
 Plug 'cespare/vim-toml'
+Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
+Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 
 " Deoplete
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -28,6 +30,7 @@ Plug 'zchee/deoplete-clang', { 'for': ['c', 'cpp'] }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'carlitux/deoplete-ternjs', { 'for': 'javascript' }
 Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
+Plug 'mhartington/nvim-typescript'
 
 " Improve nvim
 Plug 'tpope/vim-surround'
