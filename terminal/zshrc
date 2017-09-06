@@ -93,6 +93,9 @@ export EDITOR=nvim
 # sleep 5; urg
 alias urg="echo -e '\a'"
 
+# Set system clipboard as default clipboard.
+alias xclip='xclip -selection c'
+
 # screen config
 # dualscreen with HDMI
 alias dlscr="xrandr --output HDMI2 --primary --auto --pos 1366x0 --rotate normal --output HDMI1 --off --output DP1 --off --output eDP1 --mode 1366x768 --pos 0x0 --rotate normal --output VIRTUAL1 --off"
