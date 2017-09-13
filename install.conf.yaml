@@ -14,13 +14,14 @@
     $HOME/.config/termite/config: terminal/termite
     $HOME/.xinitrc: xinitrc
     $HOME/.zshrc: terminal/zshrc
-    $HOME/.config/nvim/init.vim: neovim/init.vim
-    $HOME/.config/nvim/config.vim: neovim/config.vim
-    $HOME/.config/nvim/action.vim: neovim/action.vim
-    $HOME/.config/nvim/remap.vim: neovim/remap.vim
-    $HOME/.config/nvim/plugin.vim: neovim/plugin.vim
-    $HOME/.config/nvim/plugin: neovim/plugin
-    $HOME/.config/nvim/plugged/vim-snippets/custom_snips: neovim/custom_snips
+    $HOME/.config/nvim/init.vim: nvim/init.vim
+    $HOME/.config/nvim/general.vim: nvim/general.vim
+    $HOME/.config/nvim/action.vim: nvim/action.vim
+    $HOME/.config/nvim/keybinding.vim: nvim/keybinding.vim
+    $HOME/.config/nvim/plugin.vim: nvim/plugin.vim
+    $HOME/.config/nvim/style.vim: nvim/style.vim
+    $HOME/.config/nvim/languages: nvim/languages
+    $HOME/.config/nvim/snips: nvim/snips
     $HOME/.Xresources: Xresources
     $HOME/.config/zathura/zathurarc: zathurarc
     $HOME/.config/alacritty/alacritty.yml: terminal/alacritty.yml

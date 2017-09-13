@@ -1,16 +1,15 @@
-" Map leader to space
-let mapleader=' '
+let g:mapleader = ' '
 
-" handle buffers
-set hidden " don't need to save the current buffer to quit it
-nmap <leader>T :enew<cr> " open a new buffer
-nmap <leader>l :bnext<cr> " move to next buf
-nmap <leader>h :bprev<cr> " move to previous buf
-nmap <leader>bq :bp <bar> bd #<cr> " close the current buffer and move to the previous one
-nmap <leader>bl :ls<cr> " list all currents buffers
+" For autocompletion with <Tab>
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-" disable the arrow keys
-" TODO: find better function than <nop>
+" Buffer movements
+nmap <leader>l :bnext<cr>
+nmap <leader>h :bprev<cr>
+nmap <leader>d :bdelete<cr>
+
+" Disable arrow keys
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
@@ -38,3 +37,8 @@ nmap k gk
 
 " select the last pasted text
 nnoremap gp `[v`]
+
+" Neosnippet
+imap <c-s>     <Plug>(neosnippet_expand_or_jump)
+vmap <c-s>     <Plug>(neosnippet_expand_or_jump)
+vmap <c-s> <Plug>(neosnippet_expand_target)

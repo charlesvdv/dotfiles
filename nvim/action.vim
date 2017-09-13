@@ -10,7 +10,5 @@ endfunction
 
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
-autocmd BufWritePost * Neomake
-
-autocmd BufNewFile,BufRead *.rs set ft=rust
+autocmd BufNewFile,BufRead *.toml set ft=toml
 autocmd BufNewFile,BufRead *.tex set ft=tex
