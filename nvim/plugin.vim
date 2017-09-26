@@ -34,6 +34,7 @@ Plug 'scrooloose/nerdcommenter'
 " Navigation
 Plug 'justinmk/vim-dirvish'
 Plug 'junegunn/fzf', {'dir': '$HOME/.fzf', 'do': './install --all'}
+Plug 'junegunn/fzf.vim'
 
 Plug 'Shougo/echodoc.vim'
 Plug 'tpope/vim-fugitive'

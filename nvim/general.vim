@@ -17,3 +17,8 @@ set incsearch
 set pastetoggle=<F2>
 
 set inccommand=nosplit
+
+set nobackup noswapfile
+set undofile undodir=/tmp/nvim/undodir
+
+set autoread
