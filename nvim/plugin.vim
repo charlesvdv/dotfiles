@@ -1,8 +1,7 @@
 call plug#begin()
 " Colorscheme/themes
 Plug 'morhetz/gruvbox'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 
 " Linters
 Plug 'w0rp/ale'
@@ -47,3 +46,8 @@ Plug 'tpope/vim-eunuch'
 Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
+
+command! -bang -nargs=* Rg
+    \ call fzf#vim#grep(
+    \     'rg --column --vimgrep --color=always '.shellescape(<q-args>), 1
+    \ )
