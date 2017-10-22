@@ -12,3 +12,6 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 autocmd BufNewFile,BufRead *.toml set ft=toml
 autocmd BufNewFile,BufRead *.tex set ft=tex
+
+" Force autoreloading.
+au FocusGained,BufEnter * :silent! !

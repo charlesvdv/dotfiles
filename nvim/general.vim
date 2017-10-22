@@ -22,3 +22,5 @@ set nobackup noswapfile
 set undofile undodir=/tmp/nvim/undodir
 
 set autoread
+
+set noshowmode
