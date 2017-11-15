@@ -49,5 +49,5 @@ call plug#end()
 
 command! -bang -nargs=* Rg
     \ call fzf#vim#grep(
-    \     'rg --column --vimgrep --color=always '.shellescape(<q-args>), 1
+    \     'rg --column --color=always '.shellescape(<q-args>), 1
     \ )
