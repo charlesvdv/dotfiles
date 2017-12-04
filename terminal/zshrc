@@ -110,7 +110,7 @@ if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
-export GOPATH=~/Documents/progra/GO
+export GOPATH=~/Dev/golang
 
 export MANPAGER="zsh -c \"nvim -c 'set ft=man' </dev/tty <(col -bx)\""
 
