@@ -27,7 +27,7 @@ HYPHEN_INSENSITIVE="true"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -117,5 +117,5 @@ export MANPAGER="zsh -c \"nvim -c 'set ft=man' </dev/tty <(col -bx)\""
 # fzf (fuzzy file finder)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-
-source "/home/charles/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
+# Disable annoying auto-correction of path.
+unsetopt correct_all
