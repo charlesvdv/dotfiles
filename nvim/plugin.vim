@@ -46,8 +46,3 @@ Plug 'tpope/vim-eunuch'
 Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
-
-command! -bang -nargs=* Rg
-    \ call fzf#vim#grep(
-    \     'rg --column --color=always '.shellescape(<q-args>), 1
-    \ )

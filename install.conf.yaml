@@ -21,6 +21,7 @@
     $HOME/.config/nvim/plugin.vim: nvim/plugin.vim
     $HOME/.config/nvim/style.vim: nvim/style.vim
     $HOME/.config/nvim/languages: nvim/languages
+    $HOME/.config/nvim/plugins: nvim/plugins
     $HOME/.config/nvim/snips: nvim/snips
     $HOME/.Xresources: Xresources
     $HOME/.config/zathura/zathurarc: zathurarc

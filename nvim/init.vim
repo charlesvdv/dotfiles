@@ -7,3 +7,7 @@ source $HOME/.config/nvim/action.vim
 for f in split(glob('$HOME/.config/nvim/languages/*.vim'), '\n')
     exe 'source' f
 endfor
+
+for f in split(glob('$HOME/.config/nvim/plugins/*.vim'), '\n')
+    exe 'source' f
+endfor
