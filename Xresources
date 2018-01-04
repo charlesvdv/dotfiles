@@ -16,6 +16,8 @@ urxvt*perl-ext-common: default,matcher
 urxvt*url-launcher: /usr/bin/browser
 urxvt*matcher.button: 1
 
+urxvt*termName: xterm-256color
+
 !! Colorscheme (gruvbox)
 
 ! hard contrast: *background: #1d2021
