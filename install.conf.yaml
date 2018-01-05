@@ -9,8 +9,10 @@
     $HOME/.dircolors: terminal/dircolors
     $HOME/.config/gtk-3.0/settings.ini: gtk/gtk-3.0.ini
     $HOME/.gtkrc-2.0: gtk/gtkrc-2.0
-    $HOME/.config/i3/config: i3/i3
-    $HOME/.i3blocks.conf: i3/i3blocks.conf
+    $HOME/.config/i3/config: wm/i3
+    $HOME/.i3blocks.conf: wm/i3blocks.conf
+    $HOME/.config/polybar/config: wm/polybar.conf
+    $HOME/.config/polybar/launch.sh: wm/launch_polybar.sh
     $HOME/.config/termite/config: terminal/termite
     $HOME/.xinitrc: xinitrc
     $HOME/.zshrc: terminal/zshrc
