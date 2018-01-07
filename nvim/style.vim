@@ -20,7 +20,8 @@ let g:lightline = {
 \         ],
 \     },
 \     'component_function': {
-\         'gitbranch': 'fugitive#head'
+\         'gitbranch': 'fugitive#head',
+\         'filename': 'LightlineRelativeFilename'
 \     },
 \     'component_expand': {
 \         'linter_warnings': 'LightlineLinterWarnings',
@@ -34,6 +35,9 @@ let g:lightline = {
 \     },
 \ }
 
+function! LightlineRelativeFilename()
+  return expand('%')
+endfunction
 
 function! LightlineLinterWarnings() abort
   let l:counts = ale#statusline#Count(bufnr(''))
