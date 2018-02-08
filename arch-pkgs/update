@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+# Update packages that have been fetch from other sources such as AUR.
+
+set -e
+
+pushd "$(dirname "$0")" > /dev/null
+
+# Find every pkgs
+pkgs=$(find . -maxdepth 2 -type f -name PKGBUILD)
+
+for pkg in $pkgs; do
+    pkg_name=$(dirname "$pkg" | sed -r 's/\.\///')
+
+    pushd "$(dirname "$pkg")" > /dev/null
+
+    if ! ls -a | grep -q ".git"; then
+        popd > /dev/null
+        continue
+    fi
+
+    git fetch origin master &> /dev/null
+    diff=$(git diff origin/master master)
+    if [ "$diff" == "" ]; then
+        echo "'$pkg_name' is up to date..."
+        popd > /dev/null
+        continue
+    fi
+    git diff origin/master master
+
+    read -p "Update (y/n)?" choice
+    case "$choice" in
+        y|Y ) echo "Updating..."; git reset --hard origin/master;;
+        n|N ) echo "Not updating";;
+        * ) echo "Unknown response... Continuing"; continue;;
+    esac
+    echo ""
+
+    popd > /dev/null
+done

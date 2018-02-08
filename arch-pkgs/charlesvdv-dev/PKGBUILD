@@ -1,0 +1,85 @@
+# Maintainer: Charles Vandevoorde <charles.vandevoorde@hotmail.be>
+pkgname=charlesvdv-dev
+pkgver=0.0.1
+pkgrel=2
+pkgdesc="Development system configuration for charlesvdv system"
+arch=('any')
+url="https://github.com/charlesvdv/dotfiles"
+license=('MIT')
+groups=('charlesvdv')
+
+depends=(
+    'android-tools'
+    'aspell'
+    'aspell-en'
+    'aspell-fr'
+    'autoconf'
+    'automake'
+    'autopep8'
+    'bash-language-server'
+    'biber'
+    'binutils'
+    'bison'
+    'charlesvdv-base'
+    'clang'
+    'clang-tools-extra'
+    'cloc'
+    'cmake'
+    'cquery-git'
+    'devtools'
+    'diffutils'
+    'docker'
+    'docker-compose'
+    'fakeroot'
+    'file'
+    'flex'
+    'gawk'
+    'gcc'
+    'gdb'
+    'go'
+    'go-langserver-git'
+    'groff'
+    'javascript-typescript-langserver'
+    'kcov'
+    'libtool'
+    'libtool'
+    'm4'
+    'make'
+    'meson'
+    'ncurses'
+    'nodejs'
+    'patch'
+    'pkg-config'
+    'python'
+    'python-language-server'
+    'python-pip'
+    'ruby'
+    'ruby-bundler'
+    'rust-racer'
+    'rustup'
+    'sed'
+    'shellcheck'
+    'texlive-bibtexextra'
+    'texlive-bin'
+    'texlive-core'
+    'texlive-fontsextra'
+    'texlive-formatsextra'
+    'texlive-latexextra'
+    'texlive-pictures'
+    'texlive-science'
+    'tmux'
+    'typescript'
+    'vagrant'
+    'valgrind'
+    'vscode-css-languageserver-bin'
+    'vscode-html-languageserver-bin'
+)
+
+post_install() {
+    systemctl enable docker
+    rustup update stable
+}
+
+post_upgrade() {
+    post_install $1
+}
