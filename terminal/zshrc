@@ -126,8 +126,8 @@ bindkey '^H' backward-delete-char
 bindkey '^[3;5~' delete-char
 bindkey '^[[3~' delete-char
 bindkey '^?' backward-delete-char
-fpath=($fpath "/home/charles/.zfunctions")
 
 # Set Spaceship ZSH as a prompt
 autoload -U promptinit; promptinit
 prompt spaceship
+fpath=($fpath "/home/charles/.zfunctions")
