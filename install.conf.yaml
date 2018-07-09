@@ -10,7 +10,7 @@
     $HOME/.config/gtk-3.0/settings.ini: gtk/gtk-3.0.ini
     $HOME/.gtkrc-2.0: gtk/gtkrc-2.0
     $HOME/.config/i3/config: wm/i3
-    $HOME/.i3blocks.conf: wm/i3blocks.conf
+    $HOME/.config/i3blocks/config: wm/i3blocks.conf
     $HOME/.config/polybar/config: wm/polybar.conf
     $HOME/.config/polybar/launch.sh: wm/launch_polybar.sh
     $HOME/.config/termite/config: terminal/termite
@@ -28,3 +28,5 @@
     $HOME/.Xresources: Xresources
     $HOME/.config/zathura/zathurarc: zathurarc
     $HOME/.config/alacritty/alacritty.yml: terminal/alacritty.yml
+    $HOME/.config/compton/config: wm/compton.conf
+    $HOME/.local/wallpaper.jpg: assets/wallpaper.jpg
