@@ -18,9 +18,9 @@ DATABASE_PATH = f'{DATABASE_DIR}/{DATABASE_NAME}.db.tar'
 
 # Use context manager to go inside the pkg directory
 class pkg_cd:
-    def __init__(self, pkg=None):
+    def __init__(self, pkg=None, path=None):
         if pkg is not None:
-            self.new_path = os.path.join(PKG_DIR, pkg)
+            self.new_path = pkg
         else:
             self.new_path = PKG_DIR
 
@@ -46,11 +46,11 @@ def exec(cmd, fail=True):
 
 
 def get_pkgs_name():
-    dirs = next(os.walk(PKG_DIR))[1]
+    dirs = next(os.walk('.'))[1]
 
     pkgs = []
     for dir in dirs:
-        dir_files = next(os.walk(os.path.join(PKG_DIR, dir)))[2]
+        dir_files = next(os.walk(dir))[2]
         if 'PKGBUILD' in dir_files:
             pkgs.append(dir)
     return pkgs
@@ -183,4 +183,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    with pkg_cd():
+        main()
