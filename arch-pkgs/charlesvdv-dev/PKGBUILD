@@ -52,7 +52,7 @@ depends=(
     'pkg-config'
     'python'
     'python-language-server'
-    'python-maccabe'
+    'python-mccabe'
     'python-pip'
     'python-pycodestyle'
     'python-pyflakes'
