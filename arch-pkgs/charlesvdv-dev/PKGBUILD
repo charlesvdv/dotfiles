@@ -1,7 +1,7 @@
 # Maintainer: Charles Vandevoorde <charles.vandevoorde@hotmail.be>
 pkgname=charlesvdv-dev
 pkgver=0.0.1
-pkgrel=2
+pkgrel=3
 pkgdesc="Development system configuration for charlesvdv system"
 arch=('any')
 url="https://github.com/charlesvdv/dotfiles"
@@ -52,7 +52,11 @@ depends=(
     'pkg-config'
     'python'
     'python-language-server'
+    'python-maccabe'
     'python-pip'
+    'python-pycodestyle'
+    'python-pyflakes'
+    'python-rope'
     'ruby'
     'ruby-bundler'
     'rust-racer'
@@ -73,6 +77,7 @@ depends=(
     'valgrind'
     'vscode-css-languageserver-bin'
     'vscode-html-languageserver-bin'
+    'yapf'
 )
 
 post_install() {
