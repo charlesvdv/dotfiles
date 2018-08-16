@@ -1,3 +1,30 @@
 [submodule "dotbot"]
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
+[submodule "arch-pkgs/alacritty-scrollback-git"]
+	path = arch-pkgs/alacritty-scrollback-git
+	url = https://aur.archlinux.org/alacritty-scrollback-git.git
+[submodule "arch-pkgs/peerflix"]
+	path = arch-pkgs/peerflix
+	url = https://aur.archlinux.org/peerflix.git
+[submodule "arch-pkgs/spotify"]
+	path = arch-pkgs/spotify
+	url = https://aur.archlinux.org/spotify.git
+[submodule "arch-pkgs/aurutils-git"]
+	path = arch-pkgs/aurutils-git
+	url = https://aur.archlinux.org/aurutils-git.git
+[submodule "arch-pkgs/cquery-git"]
+	path = arch-pkgs/cquery-git
+	url = https://aur.archlinux.org/cquery-git.git
+[submodule "arch-pkgs/javascript-typescript-langserver"]
+	path = arch-pkgs/javascript-typescript-langserver
+	url = https://aur.archlinux.org/javascript-typescript-langserver.git
+[submodule "arch-pkgs/go-langserver-git"]
+	path = arch-pkgs/go-langserver-git
+	url = https://aur.archlinux.org/go-langserver-git.git
+[submodule "arch-pkgs/vscode-html-languageserver-bin"]
+	path = arch-pkgs/vscode-html-languageserver-bin
+	url = https://aur.archlinux.org/vscode-html-languageserver-bin.git
+[submodule "arch-pkgs/vscode-css-languageserver-bin"]
+	path = arch-pkgs/vscode-css-languageserver-bin
+	url = https://aur.archlinux.org/vscode-css-languageserver-bin.git

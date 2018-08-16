@@ -1,0 +1,186 @@
+#!/usr/bin/python3
+
+import argparse
+import os.path
+import re
+import subprocess
+import sys
+import tempfile
+
+from pathlib import Path
+
+PKG_DIR = os.path.dirname(sys.argv[0])
+
+DATABASE_NAME = 'charlesvdv'
+DATABASE_DIR = '/var/cache/pacman/custom'
+DATABASE_PATH = f'{DATABASE_DIR}/{DATABASE_NAME}.db.tar'
+
+
+# Use context manager to go inside the pkg directory
+class pkg_cd:
+    def __init__(self, pkg=None):
+        if pkg is not None:
+            self.new_path = os.path.join(PKG_DIR, pkg)
+        else:
+            self.new_path = PKG_DIR
+
+    def __enter__(self):
+        self.saved_path = os.getcwd()
+        os.chdir(self.new_path)
+
+    def __exit__(self, exit_type, value, traceback):
+        os.chdir(self.saved_path)
+
+
+# Execute a shell command and returns the stdout
+def exec(cmd, fail=True):
+    res = subprocess.run(cmd, shell=True, capture_output=True)
+    if res.returncode != 0:
+        if fail:
+            print(f'"{cmd}" failed:')
+            print(f'{res.stderr.decode("utf-8")}')
+            exit(1)
+        else:
+            return None
+    return res.stdout.decode('utf-8')
+
+
+def get_pkgs_name():
+    dirs = next(os.walk(PKG_DIR))[1]
+
+    pkgs = []
+    for dir in dirs:
+        dir_files = next(os.walk(os.path.join(PKG_DIR, dir)))[2]
+        if 'PKGBUILD' in dir_files:
+            pkgs.append(dir)
+    return pkgs
+
+
+def generate_srcinfo_files(pkgs):
+    for pkg in pkgs:
+        with pkg_cd(pkg):
+            exec('makepkg --printsrcinfo > .SRCINFO')
+
+
+def get_pkg_build_deps():
+    partial_ordering = exec('aur graph */.SRCINFO')
+
+    pkg_deps = {}
+    for line in partial_ordering.splitlines():
+        dep_line = line.split('\t')
+        pkg, deps = dep_line[0], dep_line[1:]
+
+        if len(deps) == 1 and pkg == deps[0]:
+            pkg_deps[dep_line[0]] = set()
+        elif pkg in pkg_deps:
+            pkg_deps[pkg].update(deps)
+        else:
+            pkg_deps[pkg] = set(deps)
+    return pkg_deps
+
+
+def should_pkg_be_build(pkg, rebuild_vcs):
+    # A package build from git should always be rebuild because
+    # the source of the package may be have been updated.
+    if re.search(r'.*-git', pkg) and rebuild_vcs:
+        return True
+
+    # Get PKGBUILD version
+    with pkg_cd(pkg):
+        pkgbuild_ver = exec('aur srcver .').split('\t')[1]
+    # Get pacman db version
+    pacman_info = exec(f'pacman -Si {pkg}', fail=False)
+    if pacman_info is None:
+        return True
+    pacman_ver = re.search(r'\bVersion\s*: (.*)', pacman_info).group(1).strip()
+
+    # `vercmp` returns a negative number if the pkgbuild version is
+    # bigger than the pacman db version.
+    pkg_cmp = exec(f'vercmp {pacman_ver} {pkgbuild_ver}').strip()
+    return int(pkg_cmp) < 0
+
+
+def issuperset(base, other):
+    count = 0
+
+    for x in base:
+        for y in other:
+            if x == y:
+                count += 1
+                break
+
+    return count == len(other)
+
+
+def order_pkgs(pkgs_to_build, deps):
+    deps_subset = deps.copy()
+    for key, value in deps.items():
+        deps_subset[key] = [x for x in value if x in pkgs_to_build]
+
+    pending_resolutions = pkgs_to_build.copy()
+    ordered_pkgs = []
+    while pending_resolutions:
+        for index, pkg in enumerate(pending_resolutions):
+            if issuperset(ordered_pkgs, deps_subset[pkg]):
+                ordered_pkgs.append(pkg)
+                del pending_resolutions[index]
+                break
+        else:
+            print('error: dependency cycle')
+            exit(1)
+
+    return ordered_pkgs
+
+
+def setup_pkg_db():
+    if not Path(DATABASE_PATH).is_file():
+        print('Creating database...')
+        user = exec('id -u -n').strip()
+        exec(f'sudo install -d "{DATABASE_DIR}" -o "{user}"')
+        exec(f'repo-add "{DATABASE_PATH}"')
+
+
+def build_pkgs(pkgs):
+    with tempfile.NamedTemporaryFile() as fp:
+        fp.write('\n'.join(pkgs).encode('utf-8'))
+        fp.write(b'\n')
+        fp.seek(0)
+
+        print(f'Building packages... ({" ".join(pkgs)})')
+        proc = subprocess.Popen(f'aur build -Rc -d {DATABASE_NAME} -a {fp.name}',
+                       shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        for line in proc.stdout:
+            print(line.decode('utf-8'), end='')
+
+        if proc.returncode != 0:
+            print(f'{proc.stderr.read().decode("utf-8")}')
+            exit(1)
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--rebuild-vcs', help='force VCS packages rebuilding',
+                        action='store_true')
+    args = parser.parse_args()
+
+    pkgs = get_pkgs_name()
+
+    exec('sudo pacman -Sy')
+    print('Generating SRCINFO files...')
+    generate_srcinfo_files(pkgs)
+
+    print('Resolving dependencies...')
+    deps = get_pkg_build_deps()
+    pkgs_to_build = [pkg for pkg in pkgs if should_pkg_be_build(pkg, args.rebuild_vcs)]
+    pkgs_to_build = order_pkgs(pkgs_to_build, deps)
+
+    setup_pkg_db()
+    if pkgs_to_build:
+        build_pkgs(pkgs_to_build)
+        print(exec('pacman -Sy'))
+    else:
+        print('Nothing to do')
+
+
+if __name__ == '__main__':
+    main()
