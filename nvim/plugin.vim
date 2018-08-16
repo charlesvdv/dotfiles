@@ -7,24 +7,20 @@ Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
 
 " Auto completion
-Plug 'roxma/nvim-completion-manager'
-Plug 'autozimu/LanguageClient-neovim', {'do': ':UpdateRemotePlugins'}
-Plug 'othree/csscomplete.vim', {'for': ['css', 'html', 'javascript']}
-Plug 'roxma/ncm-clang', {'for': ['c', 'cpp']}
-Plug 'roxma/nvim-cm-tern',  {'do': 'npm install', 'for': ['javascript']}
-Plug 'roxma/ncm-elm-oracle', {'for': ['elm']}
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+Plug 'Shougo/neco-vim', { 'for':  'vim' }
 
 " Snippets
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 
 " Language support
-Plug 'rust-lang/rust.vim', {'for': 'rust'}
 Plug 'lervag/vimtex', {'for': 'tex'}
-Plug 'stephpy/vim-yaml', {'for': 'yaml'}
-Plug 'cespare/vim-toml', {'for': 'toml'}
 Plug 'sukima/xmledit', {'for': ['xml', 'html']}
-Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'mesonbuild/meson', { 'rtp': 'syntax-highlighting/vim' }
 Plug 'sheerun/vim-polyglot'
 

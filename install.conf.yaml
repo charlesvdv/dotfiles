@@ -23,6 +23,7 @@
     $HOME/.config/nvim/languages: nvim/languages
     $HOME/.config/nvim/plugins: nvim/plugins
     $HOME/.config/nvim/snips: nvim/snips
+    $HOME/.config/nvim/lsp-settings.json: nvim/lsp-settings.json
     $HOME/.Xresources: Xresources
     $HOME/.config/zathura/zathurarc: zathurarc
     $HOME/.config/alacritty/alacritty.yml: terminal/alacritty.yml
