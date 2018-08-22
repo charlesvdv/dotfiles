@@ -28,7 +28,7 @@ for pkg in $pkgs; do
     fi
     git diff origin/master master
 
-    read -p "Update (y/n)?" choice
+    read -p "Update $pkg_name (y/n)?" choice
     case "$choice" in
         y|Y ) echo "Updating..."; git reset --hard origin/master;;
         n|N ) echo "Not updating";;
