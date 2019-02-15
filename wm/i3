@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:FiraCode Retina 8
+font pango:monospace 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -42,7 +42,7 @@ bindsym $mod+d exec dmenu_run
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
-# define direction keys
+# set default direction
 set $left h
 set $down j
 set $up k
@@ -55,10 +55,10 @@ bindsym $mod+$up focus up
 bindsym $mod+$right focus right
 
 # alternatively, you can use the cursor keys:
-bindsym Mod1+Left focus left
-bindsym Mod1+Down focus down
-bindsym Mod1+Up focus up
-bindsym Mod1+Right focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
 
 # move focused window
 bindsym $mod+Shift+$left move left
@@ -67,10 +67,10 @@ bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
 
 # alternatively, you can use the cursor keys:
-bindsym Mod1+Shift+Left move left
-bindsym Mod1+Shift+Down move down
-bindsym Mod1+Shift+Up move up
-bindsym Mod1+Shift+Right move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+b split h
@@ -93,10 +93,10 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+x focus parent
+bindsym $mod+q focus parent
 
 # focus the child container
-bindsym $mod+c focus child
+#bindsym $mod+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -140,12 +140,16 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
     # These bindings trigger as soon as you enter the resize mode
 
+    # Pressing left will shrink the window’s width.
+    # Pressing right will grow the window’s width.
+    # Pressing up will shrink the window’s height.
+    # Pressing down will grow the window’s height.
     bindsym $left resize shrink width 10 px or 10 ppt
     bindsym $down resize grow height 10 px or 10 ppt
     bindsym $up resize shrink height 10 px or 10 ppt
@@ -165,61 +169,16 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Multi-monitor setup
-bindsym $mod+o move workspace to output left
-bindsym $mod+p move workspace to output right
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+    status_command i3blocks
+    position bottom
+}
 
-bindsym $mod+Shift+x exec i3lock
+exec_always setxkbmap fr
+exec nm-applet
 
-# Sound control
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no--startup-id pactl set-sink-mute 0 'toggle'
-
-# Screen brightness control
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 2
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 2
-
-bindsym Print exec maim -s ~/Pictures/screenshots/$(date +%F-%T).png
-bindsym Shift+Print exec maim ~/Pictures/screenshots/$(date +%F-%T).png
-
-set $transparent #00000011
-set $white #ffffff
-set $darkred #cc241d
-set $blue #528edd
-set $darkgrey #23272f
-
-#                       BORDER    BACKGROUND TEXT   INDICATOR
-client.focused          $blue     $blue      $white $white
-client.focused_inactive $darkgrey $darkgrey  $white $white
-client.unfocused        $darkgrey $darkgrey  $white $white
-client.urgent           $white    $darkred   $white $white
-
-bar {
-    status_command i3blocks
-    i3bar_command i3bar -t
-    position top
-    font pango: Hack, FontAwesome 10
-
-    colors {
-        statusline $white
-        background $transparent
-        separator $white
-
-#                          BORDER       BACKGROUND   TEXT
-        focused_workspace  $white       $white       $transparent
-        inactive_workspace $transparent $transparent $white
-        active_workspace   $transparent $transparent $white
-        urgent_workspace   $darkred     $darkred     $transparent
-        binding_mode $darkred $darkred $transparent
-    }
-}
-
-for_window [class="^.*"] border pixel 0
-
-gaps inner 8
-gaps outer 2
-
-exec /usr/bin/compton --config ~/.config/compton/config -b
-exec_always --no-startup-id feh --bg-scale $HOME/.local/wallpaper.jpg
-exec nm-applet

@@ -11,8 +11,7 @@
     $HOME/.gtkrc-2.0: gtk/gtkrc-2.0
     $HOME/.config/i3/config: wm/i3
     $HOME/.config/i3blocks/config: wm/i3blocks.conf
-    $HOME/.config/termite/config: terminal/termite
-    $HOME/.xinitrc: xinitrc
+    #$HOME/.xinitrc: xinitrc
     $HOME/.zshrc: terminal/zshrc
     $HOME/.config/nvim/init.vim: nvim/init.vim
     $HOME/.config/nvim/general.vim: nvim/general.vim
@@ -20,12 +19,9 @@
     $HOME/.config/nvim/keybinding.vim: nvim/keybinding.vim
     $HOME/.config/nvim/plugin.vim: nvim/plugin.vim
     $HOME/.config/nvim/style.vim: nvim/style.vim
-    $HOME/.config/nvim/languages: nvim/languages
     $HOME/.config/nvim/plugins: nvim/plugins
     $HOME/.config/nvim/snips: nvim/snips
     $HOME/.config/nvim/lsp-settings.json: nvim/lsp-settings.json
-    $HOME/.Xresources: Xresources
+    #$HOME/.Xresources: Xresources
     $HOME/.config/zathura/zathurarc: zathurarc
     $HOME/.config/alacritty/alacritty.yml: terminal/alacritty.yml
-    $HOME/.config/compton/config: wm/compton.conf
-    $HOME/.local/wallpaper.jpg: assets/wallpaper.jpg

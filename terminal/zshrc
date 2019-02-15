@@ -1,18 +1,27 @@
-# Path to your oh-my-zsh installation.
-export ZSH=/home/charles/.oh-my-zsh
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME=""
+# Path to your oh-my-zsh installation.
+export ZSH="/home/charles/.oh-my-zsh"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+# ZSH_THEME="robbyrussell"
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
-CASE_SENSITIVE="true"
+# CASE_SENSITIVE="true"
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-HYPHEN_INSENSITIVE="true"
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -35,31 +44,35 @@ COMPLETION_WAITING_DOTS="true"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-DISABLE_UNTRACKED_FILES_DIRTY="true"
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-HIST_STAMPS="dd/mm/yyyy"
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump extract colorize)
+plugins=(
+  git
+  autojump
+  extract
+)
+
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --vimgrep --glob "!.git/*"'
-
-export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/.cargo/bin/"
-export PATH="$PATH:$HOME/.yarn/bin:$GOPATH/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
-
-source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
@@ -72,62 +85,33 @@ export LANG=en_US.UTF-8
 # fi
 
 # Compilation flags
-export ARCHFLAGS="-arch x86_64"
+# export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-
-# remap all vi* entry to nvim
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias v='nvim'
 alias vim='nvim'
 alias vi='nvim'
 
-# set default editor to neovim
-export VISUAL=nvim
-export EDITOR=nvim
+export EDITOR="nvim"
 
-# new command to create an urgent window on i3.
-# How tu use:
-# sleep 5; urg
-alias urg="echo -e '\a'"
+export PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
+export PATH="$PATH:$HOME/.yarn/bin"
 
-# Set system clipboard as default clipboard.
-alias xclip='xclip -selection c'
-
-# screen config
-# dualscreen with HDMI
-alias dlscr="xrandr --output HDMI2 --primary --auto --pos 1366x0 --rotate normal --output HDMI1 --off --output DP1 --off --output eDP1 --mode 1366x768 --pos 0x0 --rotate normal --output VIRTUAL1 --off"
-# monoscreen (laptop screen)
-alias lptscr="xrandr --output HDMI2 --off --output HDMI1 --off --output DP1 --off --output eDP1 --mode 1366x768 --pos 0x0 --rotate normal --output VIRTUAL1 --off"
-
-# ls with color
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-fi
-
-export GOPATH=~/Dev/golang
-
-export MANPAGER="zsh -c \"nvim -c 'set ft=man' </dev/tty <(col -bx)\""
-
-# fzf (fuzzy file finder)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Disable annoying auto-correction of path.
-unsetopt correct_all
-
-# Fix backspace when sshing.
-bindkey '^D' delete-char-or-list
-bindkey '^H' backward-delete-char
-bindkey '^[3;5~' delete-char
-bindkey '^[[3~' delete-char
-bindkey '^?' backward-delete-char
+fpath=($fpath "/home/charles/.zfunctions")
 
 # Set Spaceship ZSH as a prompt
-fpath=($fpath "/home/charles/.zfunctions")
+SPACESHIP_BATTERY_SHOW=false
 autoload -U promptinit; promptinit
 prompt spaceship
