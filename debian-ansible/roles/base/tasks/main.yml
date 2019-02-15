@@ -18,6 +18,7 @@
     - tmux
     - cloc
     - sshpass
+    - tree
 
 - import_tasks: non_free.yml
 - import_tasks: grub.yml
