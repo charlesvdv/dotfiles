@@ -1,0 +1,24 @@
+- name: Install i3 & stuffs
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - i3
+    - suckless-tools
+    - i3blocks
+
+- name: Check if i3blocks-contrib is installed
+  stat:
+    path: /usr/share/i3blocks-contrib
+  register: i3blocks_dir
+
+- name: Install new i3blocks blocks
+  unarchive:
+    src: https://github.com/vivien/i3blocks-contrib/archive/master.zip
+    dest: /usr/share/
+    remote_src: yes
+  when: not i3blocks_dir.stat.exists
+
+- name: Move i3blocks dir
+  shell: mv /usr/share/i3blocks-contrib-master /usr/share/i3blocks-contrib
+  when: not i3blocks_dir.stat.exists

@@ -1,0 +1,12 @@
+- name: Update grub config
+  copy:
+    src: files/grub.config
+    dest: /etc/default/grub
+    owner: root
+    group: root
+    mode: 0644
+  register: grub_info
+
+- name: Update grub
+  shell: update-grub
+  when: grub_info.changed

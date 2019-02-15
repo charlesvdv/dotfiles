@@ -1,0 +1,23 @@
+- name: Install neovim
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - neovim
+    - python3-neovim
+    - xxd # not sure if really needed...
+
+- name: Uninstall vim
+  apt:
+    name: vim
+    state: absent
+
+- name: Create nvim auto-load dir
+  file:
+    path: /home/{{ username }}/.local/share/nvim/site/autoload
+    state: directory
+
+- name: Install vim-plug
+  get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: /home/{{ username }}/.local/share/nvim/site/autoload/plug.vim

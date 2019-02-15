@@ -1,0 +1,14 @@
+# TODO: LSP
+---
+- name: Install go compiler
+  apt:
+    name: golang
+
+- name: Install golang tooling
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - gocode
+    - golint
+    - golang-golang-x-tools

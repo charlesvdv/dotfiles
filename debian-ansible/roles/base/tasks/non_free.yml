@@ -1,0 +1,4 @@
+- name: Install intel non-free blob
+  apt:
+    name: intel-microcode
+  when: "'Intel' in ansible_facts['processor'][1]"

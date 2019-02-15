@@ -1,0 +1,20 @@
+---
+- name: Install node
+  apt:
+    name: nodejs
+
+- name: Adding yarn repository key
+  apt_key:
+    url: https://dl.yarnpkg.com/debian/pubkey.gpg
+
+- name: Adding yarn repository
+  apt_repository:
+    repo: deb https://dl.yarnpkg.com/debian/ stable main
+
+- name: Install JS package manager
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - npm
+    - yarn

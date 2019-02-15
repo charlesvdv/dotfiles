@@ -1,0 +1,26 @@
+- name: Get Alacritty download url
+  shell: >
+    curl -s https://api.github.com/repos/jwilm/alacritty/releases/latest
+    | grep "browser_download_url.*amd64\.deb"
+    | cut -d : -f 2,3
+    | tr -d \"
+    | tr -d " "
+  register: alacritty_url_out
+  args:
+    warn: False
+
+- name: Get Alacritty version
+  shell: alacritty --version || true
+  register: alacritty_version
+
+- set_fact:
+    alacritty_url: "{{ alacritty_url_out.stdout_lines[0] }}"
+
+- set_fact:
+    alacritty_remote_version: "{{ alacritty_url | regex_findall('v(\\d+\\.\\d+\\.\\d+)') | first }}"
+    alacritty_local_version: "{{ alacritty_version.stdout.split(' ')[1] | default('') }}"
+
+- name: Install Alacritty
+  apt:
+    deb: "{{ alacritty_url }}"
+  when: alacritty_remote_version != alacritty_local_version

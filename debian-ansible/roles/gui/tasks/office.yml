@@ -1,0 +1,15 @@
+- name: Install libreoffice
+  apt:
+    name: libreoffice
+
+- name: Install pdf readers
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - zathura
+    - zathura-ps
+    - zathura-djvu
+    - zathura-pdf-poppler
+    - zathura-ps
+    - evince

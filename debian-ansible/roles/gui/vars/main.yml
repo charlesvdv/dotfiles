@@ -1,0 +1,2 @@
+firefox_dev_edition_version: 65.0b7
+firefox_dev_edition_url: https://ftp.mozilla.org/pub/devedition/releases/{{ firefox_dev_edition_version }}/linux-x86_64/en-US/firefox-{{ firefox_dev_edition_version }}.tar.bz2

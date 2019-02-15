@@ -1,0 +1,3 @@
+- name: Install xorg
+  apt:
+    name: xorg

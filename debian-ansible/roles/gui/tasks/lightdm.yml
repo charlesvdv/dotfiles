@@ -1,0 +1,14 @@
+- name: Ensure lightdm conf dir exists
+  file:
+    path: /etc/lightdm/lightdm.conf.d
+    state: directory
+
+- name: Copy lightdm config file
+  copy: 
+    src: files/lightdm.conf
+    dest: /etc/lightdm/lightdm.conf.d/01_my.conf
+ 
+- name: Copy lightdm styling config file
+  template:
+    src: files/lightdm-gtk-greeter.conf
+    dest: /etc/lightdm/lightdm-gtk-greeter.conf

@@ -1,0 +1,3 @@
+- name: Install wireless Atheros firmware
+  apt:
+    name: firmware-atheros
