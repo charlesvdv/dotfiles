@@ -1,5 +1,0 @@
-# Generated from PKGBUILD
-.SRCINFO
-*.log
-*.pkg.tar*
-pkg/
