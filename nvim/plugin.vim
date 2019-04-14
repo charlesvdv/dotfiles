@@ -7,12 +7,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
 
 " Auto completion
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-Plug 'Shougo/neco-vim', { 'for':  'vim' }
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install() }}
 
 " Snippets
 Plug 'Shougo/neosnippet'

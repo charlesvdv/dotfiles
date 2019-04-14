@@ -22,3 +22,15 @@
 - name: Move i3blocks dir
   shell: mv /usr/share/i3blocks-contrib-master /usr/share/i3blocks-contrib
   when: not i3blocks_dir.stat.exists
+
+- name: Install screenshot tool
+  apt:
+    name: maim
+
+- name: Create screenshot dir
+  file:
+    path: /home/{{ username }}/Pictures/screenshots
+    state: directory
+    owner: {{ username }}
+    group: {{ username }}
+    recurse: yes
