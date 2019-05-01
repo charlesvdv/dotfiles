@@ -31,6 +31,6 @@
   file:
     path: /home/{{ username }}/Pictures/screenshots
     state: directory
-    owner: {{ username }}
-    group: {{ username }}
+    owner: "{{ username }}"
+    group: "{{ username }}"
     recurse: yes
