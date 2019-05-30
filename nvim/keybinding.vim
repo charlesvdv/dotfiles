@@ -1,9 +1,5 @@
 let g:mapleader = ' '
 
-" For autocompletion with <Tab>
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
 " Buffer movements
 nmap <leader>l :bnext<cr>
 nmap <leader>h :bprev<cr>
@@ -42,8 +38,3 @@ nnoremap gp `[v`]
 imap <c-s>     <Plug>(neosnippet_expand_or_jump)
 vmap <c-s>     <Plug>(neosnippet_expand_or_jump)
 vmap <c-s> <Plug>(neosnippet_expand_target)
-
-" fzf.vim
-nnoremap ; :Buffers<cr>
-nnoremap <leader>f :Files<cr>
-nnoremap <leader>r :Rg<cr>

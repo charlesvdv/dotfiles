@@ -35,5 +35,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sleuth'
 " UNIX cmd in vim
 Plug 'tpope/vim-eunuch'
+
 Plug 'jiangmiao/auto-pairs'
 call plug#end()
