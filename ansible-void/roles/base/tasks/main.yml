@@ -1,0 +1,8 @@
+---
+- import_tasks: post-install.yml
+- import_tasks: cli.yml
+- import_tasks: shell.yml
+- import_tasks: dev.yml
+- import_tasks: desktop.yml
+- import_tasks: application.yml
+- import_tasks: firefox-dev-edition.yml

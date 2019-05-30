@@ -1,0 +1,18 @@
+- name: install video driver
+  xbps: name=xf86-video-intel
+
+- name: install intel microcode
+  xbps: name=intel-ucode
+  register: microcode_install
+
+- name: install microcode configuration
+  copy:
+    src: intel_ucode.conf
+    dest: /etc/dracut.conf.d/intel_ucode.conf
+
+- name: reconfigure kernel
+  shell: xbps-reconfigure -f linux
+  when: microcode_install.changed
+
+- name: install intel firmware
+  xbps: name=linux-firmware-intel

@@ -1,0 +1,173 @@
+- name: install desktop env
+  xbps:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - xorg
+    - dbus
+    - ConsoleKit2
+    - i3
+    - feh
+    - maim
+    - i3blocks
+    - dmenu
+    - lightdm
+    - lightdm-gtk3-greeter
+    - arc-theme
+    - arc-icon-theme
+    - bluez
+    - blueman
+    - xfce4-notifyd
+    - xfce4-power-manager
+    - xfce4-settings
+    - NetworkManager
+    - network-manager-applet
+    - gnome-icon-theme
+    - inetutils-ifconfig
+    - gnome-keyring
+    - pulseaudio
+    - alsa-utils
+    - libinput
+    - xf86-input-libinput
+    - libinput-gestures
+    - pa-applet
+
+# required for networkmanager
+- name: disable dhcpcd service
+  runit:
+    name: dhcpcd
+    enabled: no
+    state: stopped
+
+# required for networkmanager
+- name: disable wpa_supplicant service
+  runit:
+    name: wpa_supplicant
+    enabled: no
+    state: stopped
+
+- name: enable dbus service
+  runit:
+    name: dbus
+    enabled: yes
+    state: started
+
+# required for pulseaudio
+- name: enable cgmanager service
+  runit:
+    name: cgmanager
+    enabled: yes
+    state: started
+
+- name: enable consolekit service
+  runit:
+    name: consolekit
+    enabled: yes
+    state: started
+
+- name: enable acpid service
+  runit:
+    name: acpid
+    enabled: yes
+    state: started
+
+- name: enable NetworkManager service
+  runit:
+    name: NetworkManager
+    enabled: yes
+    state: started
+
+- name: enable alsa service
+  runit:
+    name: alsa
+    enabled: yes
+    state: started
+
+- name: enable bluetooth service
+  runit:
+    name: bluetoothd
+    enabled: yes
+    state: started
+
+- name: create xorg config dir
+  file:
+    path: /etc/X11/xorg.conf.d
+    state: directory
+
+- name: configure xorg keymap
+  copy:
+    src: xorg-10-keyboard.conf
+    dest: /etc/X11/xorg.conf.d/10-keyboard.conf
+
+- name: enable lightdm service
+  runit:
+    name: lightdm
+    enabled: yes
+    state: started
+
+- name: create shared image directory
+  file:
+    path: /usr/local/share/images
+    state: directory
+
+- name: copy background image
+  copy:
+    src: background.jpg
+    dest: /usr/local/share/images/background.jpg
+
+- name: copy lightdm-gtk-greeter conf
+  copy:
+    src: lightdm-gtk-greeter.conf
+    dest: /etc/lightdm/lightdm-gtk-greeter.conf
+
+- name: copy i3 config
+  copy:
+    src: i3-config
+    dest: /home/{{ username }}/.config/i3/config
+
+- name: symlink xfce settings manager
+  file:
+    src: /usr/bin/xfce4-settings-manager
+    dest: /usr/bin/settings
+    state: link
+
+- name: create screenshot directory
+  file:
+    path: /home/{{ username }}/Pictures/screenshots
+    state: directory
+    recurse: yes
+    owner: "{{ username }}"
+    group: "{{ username }}"
+
+- name: check if i3blocks-contrib is installed
+  stat:
+    path: /usr/share/i3blocks-contrib-master
+  register: i3blocks_dir
+
+- name: install new i3blocks blocks
+  unarchive:
+    src: https://github.com/vivien/i3blocks-contrib/archive/master.zip
+    dest: /usr/share/
+    remote_src: yes
+  when: not i3blocks_dir.stat.exists
+
+- name: add bluetooth to {{ username }}'s group
+  user:
+    name: "{{ username }}"
+    groups: bluetooth
+    append: yes
+
+- name: copy bluetoothd conf
+  copy:
+    src: bluetooth-main.conf
+    dest: /etc/bluetooth/main.conf
+
+- name: copy pulse default conf
+  copy:
+    src: pulse-default.pa
+    dest: /etc/pulse/default.pa
+
+- name: touchpad libinput config
+  copy:
+    src: 30-touchpad.conf
+    dest: /etc/X11/xorg.conf.d/30-touchpad.conf

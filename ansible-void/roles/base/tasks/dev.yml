@@ -1,0 +1,67 @@
+- name: install dev languages
+  xbps:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - go
+    - rustup
+    - gcc
+    - clang
+    - nodejs
+    - python3
+    - texlive-bin
+
+- name: install nvim
+  xbps: name=neovim,python3-neovim
+
+- name: create nvim auto-load dir
+  file:
+    path: /home/{{ username }}/.local/share/nvim/site/autoload
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+
+- name: install vim-plug
+  get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: /home/{{ username }}/.local/share/nvim/site/autoload/plug.vim
+
+- name: install dev tooling
+  xbps:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - docker
+    - docker-compose
+    - valgrind
+    - gdb
+    - meson
+    - cmake
+    - make
+    - autoconf
+    - yarn-bin
+    - python3-pip
+    - python3-pipenv
+    - python3-flake8
+    - hugo
+    - delve
+
+- name: check if rust is installed
+  stat:
+    path: /home/{{ username }}/.cargo/bin/rustc
+  register: rust_installed
+
+- name: install rust via rustup-init
+  shell: rustup-init -y
+  when: not rust_installed.stat.exists
+
+- name: create GOPATH & GOBIN folder
+  file:
+    path: /home/{{ username }}/.go/bin
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+
+- name: install gopls
+  shell: go get -u golang.org/x/tools/cmd/gopls
+  become: "{{ username }}"

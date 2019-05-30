@@ -1,0 +1,38 @@
+
+- name: check if firefox developer edition is already installed
+  stat:
+    path: /opt/firefox-dev-edition
+  register: firefox_dir
+
+- name: install firefox developer edition
+  unarchive:
+    src: https://ftp.mozilla.org/pub/devedition/releases/67.0b9/linux-x86_64/en-US/firefox-67.0b9.tar.bz2
+    dest: /opt
+    remote_src: yes
+  when: not firefox_dir.stat.exists
+
+- name: move firefox developer edition to the right dir
+  shell: mv /opt/firefox /opt/firefox-dev-edition
+  args:
+    creates: /opt/firefox-dev-edition
+
+- name: change firefox developer edition folder permission
+  file:
+    path: /opt/firefox-dev-edition/
+    recurse: yes
+    owner: "{{ username }}"
+    group: "{{ username }}"
+
+- name: add firefox desktop file
+  copy:
+    src: files/firefox-dev-edition.desktop
+    dest: /usr/share/applications/
+    mode: 0644
+    owner: root
+    group: root
+
+- name: add default browser link
+  file:
+    src: /opt/firefox-dev-edition/firefox
+    dest: /usr/bin/browser
+    state: link

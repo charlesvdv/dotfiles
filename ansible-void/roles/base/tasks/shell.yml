@@ -1,0 +1,23 @@
+- name: install zsh
+  xbps: name=zsh
+
+- name: create zsh shared script dir
+  file:
+    path: /usr/share/zsh
+    state: directory
+    recurse: true
+    mode: 0755
+
+- name: install antigen
+  get_url:
+    url: https://git.io/antigen
+    dest: /usr/share/zsh/antigen.zsh
+    mode: 0755
+
+- name: set ZSH as default shell
+  user: name="{{ username }}" shell=/bin/zsh
+
+- name: copy zshrc
+  copy:
+    src: zshrc
+    dest: /home/{{ username }}/.zshrc

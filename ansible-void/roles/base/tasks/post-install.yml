@@ -1,0 +1,25 @@
+# Steps described in the post install wiki from void linux
+# https://wiki.voidlinux.org/Post_Installation
+
+- name: install non-free repo
+  xbps: name=void-repo-nonfree
+
+- name: install linux firmware
+  xbps: name=linux-firmware,linux-firmware-network
+
+
+- name: disable useless mdadm
+  runit:
+    name: mdadm
+    enabled: no
+
+- name: disable sshd
+  runit:
+    name: sshd
+    enabled: no
+
+- name: setup {{ username }} user
+  user:
+    name: "{{ username }}"
+    groups: wheel,users,audio,video,cdrom,input,storage
+    generate_ssh_key: yes

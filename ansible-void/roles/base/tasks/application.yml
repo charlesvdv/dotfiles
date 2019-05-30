@@ -1,0 +1,60 @@
+- name: install applications
+  xbps:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - vlc
+    - mpv
+    - pavucontrol
+    - arandr
+    - alacritty
+    - inkscape
+    - libreoffice
+    - libreoffice-i18n-fr
+    - libreoffice-i18n-en-US
+    - evince
+    - zathura
+    - zathura-pdf-mupdf
+    - zathura-djvu
+    - zathura-ps
+    - spotify
+    - firefox
+    - chromium
+    - Thunar
+    - thunar-archive-plugin
+    - thunar-media-tags-plugin
+    - gvfs
+
+- name: install fonts
+  xbps:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - font-awesome5
+    - font-symbola
+    - font-firacode
+
+- name: install peerflix
+  yarn:
+    name: peerflix
+    global: yes
+    state: latest
+
+- name: copy alacritty config file
+  copy:
+    src: alacritty.yml
+    dest: /home/{{ username }}/.config/alacritty/alacritty.yml
+
+- name: copy i3blocks config file
+  copy:
+    src: i3blocks-config
+    dest: /home/{{ username }}/.config/i3blocks/config
+
+- name: create local fontconfig dir
+  file:
+    path: /home/{{ username }}/.config/fontconfig
+
+- name: copy fonts.conf
+  copy:
+    src: fonts.conf
+    dest: /home/{{ username }}/.config/fontconfig/fonts.conf
