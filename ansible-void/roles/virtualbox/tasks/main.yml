@@ -1,0 +1,8 @@
+- name: install virtualbox guest driver
+  xbps: name=virtualbox-ose-guest
+
+- name: enable vboxservice service
+  runit:
+    name: vboxservice
+    enabled: yes
+    state: started
