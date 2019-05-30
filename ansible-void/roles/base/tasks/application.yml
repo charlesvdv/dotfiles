@@ -40,10 +40,24 @@
     global: yes
     state: latest
 
+- name: create alacritty config dir
+  file:
+    path: /home/{{ username }}/.config/alacritty
+    state: directory
+    group: "{{ username }}"
+    owner: "{{ username }}"
+
 - name: copy alacritty config file
   copy:
     src: alacritty.yml
     dest: /home/{{ username }}/.config/alacritty/alacritty.yml
+
+- name: create i3blocks config dir
+  file:
+    path: /home/{{ username }}/.config/i3blocks
+    state: directory
+    group: "{{ username }}"
+    owner: "{{ username }}"
 
 - name: copy i3blocks config file
   copy:
@@ -53,6 +67,9 @@
 - name: create local fontconfig dir
   file:
     path: /home/{{ username }}/.config/fontconfig
+    state: directory
+    group: "{{ username }}"
+    owner: "{{ username }}"
 
 - name: copy fonts.conf
   copy:
