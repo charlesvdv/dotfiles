@@ -1,3 +1,0 @@
-- name: Install xbacklight
-  apt:
-    name: xbacklight

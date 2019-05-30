@@ -1,8 +1,0 @@
-- name: Install beautiful fonts
-  apt:
-    name: "{{ packages }}"
-  vars:
-    packages:
-    - fonts-firacode
-    - fonts-noto-color-emoji
-    - fonts-font-awesome

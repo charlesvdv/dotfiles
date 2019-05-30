@@ -1,7 +1,0 @@
----
-- name: Install texlive
-  apt:
-    name: "{{ packages }}"
-  vars:
-    packages:
-    - texlive
