@@ -7,6 +7,14 @@
 - name: install linux firmware
   xbps: name=linux-firmware,linux-firmware-network
 
+- name: install openntp
+  xbps: name=openntpd
+
+- name: enable openntp service
+  runit:
+    name: openntpd
+    enabled: yes
+    state: started
 
 - name: disable useless mdadm
   runit:
