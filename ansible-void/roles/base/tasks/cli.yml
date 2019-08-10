@@ -16,3 +16,5 @@
     - tree
     - htop
     - unzip
+    - net-tools
+    - nmap

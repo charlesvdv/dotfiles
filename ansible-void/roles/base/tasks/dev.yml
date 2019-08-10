@@ -45,6 +45,7 @@
     - python3-flake8
     - hugo
     - delve
+    - vscode
 
 - name: check if rust is installed
   stat:
